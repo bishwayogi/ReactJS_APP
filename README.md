@@ -1,64 +1,110 @@
-This repository contains two versions of a React application: a Baseline_App and an Optimized_App. It also includes the necessary tools and instructions to run performance analysis using Lighthouse and generate a comparative CSV report.
+<p>
+  This repository contains two versions of a React application: a baseline
+  version and an optimized version. It also includes the necessary tools and
+  instructions to run performance analysis using Lighthouse and generate a
+  comparative report.
+</p>
 
-The repository is organized into the following directories:
+<h2>Project Structure</h2>
 
-text
-ReactJS_App/
-├── Baseline_App/      # The original, non-optimized React application.
-├── Optimized_App/     # The optimized version of the React application.
-└── AnalysisDATA/      # Directory to store performance reports.
+<pre><code>ReactJS_App/
+├── Baseline_App/       # The original, unoptimized React application
+├── Optimized_App/      # The refactored and optimized React application
+└── AnalysisDATA/       # Directory for storing performance reports
+</code></pre>
 
+<h2>Prerequisites</h2>
+<p>
+  Before you begin, ensure you have the following installed on your machine:
+</p>
+<ul>
+  <li>
+    <a href="https://nodejs.org/" target="_blank">Node.js</a> (which includes
+    npm)
+  </li>
+  <li>Google Chrome</li>
+</ul>
 
-Before you begin, ensure you have the following installed on your system:
-•	Node.js (which includes npm)
-•	Google Chrome
-•	lighthouse npm package installed globally. If you don't have it, run: npm install -g lighthouse
+<h2>Setup and Running the Applications</h2>
+<p>
+  Follow these steps to set up and run both the baseline and optimized
+  applications simultaneously.
+</p>
 
+<h3>1. Clone the Repository</h3>
+<pre><code>git clone &lt;your-repository-url&gt;
+cd ReactJS_App</code></pre>
 
-**Setup and Installation**
-You need to install the dependencies for both the baseline and the optimized applications separately.
-1.	Install Dependencies for Baseline App:
+<h3>2. Set Up the Baseline App</h3>
+<p>This application will run on <code>http://localhost:3000</code>.</p>
+<pre><code># Navigate to the baseline app directory
 cd Baseline_App
+
+# Install dependencies
 npm install
-cd ..
 
-2.	Install Dependencies for Optimized App: cd Optimized_App
+# Start the application
+npm start</code></pre>
+<p class="note">
+  Keep this terminal window open. A new browser tab should open with the
+  baseline app.
+</p>
 
-**Running the Applications for Analysis**
-To compare the applications, you must run them simultaneously on two different ports.
+<h3>3. Set Up the Optimized App</h3>
+<p>
+  This application will run on <code>http://localhost:3001</code>. Open a
+  <strong>new terminal window</strong> for this step.
+</p>
+<pre><code># Navigate to the optimized app directory from the root
+cd path/to/ReactJS_App/Optimized_App
 
-**1.	Start the Baseline App (on Port 3000):**
-Open a terminal, navigate to the Baseline_App directory, and run: npm start
-The app will be available at http://localhost:3000.
-
-**2.	Start the Optimized App (on Port 3001):**
-Open a new terminal, navigate to the Optimized_App directory, and run:npm start
-
-Note: By default, Create React App will prompt you to use a different port if 3000 is busy. Confirm by pressing y to run it on http://localhost:3001.
-
-**Generating Lighthouse Performance Reports**
-With both applications running, you can now use the Lighthouse CLI to generate performance reports.
-
-**1.	Generate Report for Baseline App:**
-Run the following command from the root of the ReactJS_App directory: 
--- lighthouse http://localhost:3000 --output json --output-path ./AnalysisDATA/lighthouse_report_baseline.json --only-categories=performance
--- lighthouse http://localhost:3000 --output html --output-path ./lighthouse_report_baseline.html --only-categories=performance
-
-**2.	Generate Report for Optimized App:**
-Next, run this command from the root of the ReactJS_App directory:
--- lighthouse http://localhost:3001 --output json --output-path ./AnalysisDATA/lighthouse_report_optimized.json --only-categories=performance
--- lighthouse http://localhost:3001 --output html --output-path ./lighthouse_report_optimized.html --only-categories=performance
-
-
-After running these commands, you will find two new files, lighthouse_report_baseline.json and lighthouse_report_optimized.json, inside the AnalysisDATA folder.
-
-**Comparing Performance Metrics**
-To easily compare the key performance metrics from both reports, run the following Node.js command from the root of the ReactJS_App directory. This command reads both JSON reports and generates a clean performance_summary.csv file.
-
-node -e "const fs=require('fs'); const base=require('./AnalysisDATA/lighthouse_report_baseline.json'); const opt=require('./AnalysisDATA/lighthouse_report_optimized.json'); const data=`Metric,Baseline (ms),Optimized (ms)\nFirst Contentful Paint,${base.audits['first-contentful-paint'].numericValue},${opt.audits['first-contentful-paint'].numericValue}\nLargest Contentful Paint,${base.audits['largest-contentful-paint'].numericValue},${opt.audits['largest-contentful-paint'].numericValue}\nTime to Interactive,${base.audits['interactive'].numericValue},${opt.audits['interactive'].numericValue}\nTotal Blocking Time,${base.audits['total-blocking-time'].numericValue},${opt.audits['total-blocking-time'].numericValue}\nCumulative Layout Shift,${base.audits['cumulative-layout-shift'].numericValue},${opt.audits['cumulative-layout-shift'].numericValue}`; fs.writeFileSync('./AnalysisDATA/performance_summary.csv',data)"
-
-
-
-
+# Install dependencies
 npm install
-cd ..
+
+# Start the application on a different port
+npm start</code></pre>
+<p class="note">
+  When prompted, confirm that you want to run the app on a different port (e.g.,
+  3001).
+</p>
+
+<h2>Performance Analysis with Lighthouse</h2>
+<p>
+  With both applications running, you can now generate Lighthouse performance
+  reports. Run these commands from the root directory of the repository
+  (<code>ReactJS_App/</code>).
+</p>
+
+<h3>1. Generate Baseline Report</h3>
+<p>
+  This command will analyze the app on port 3000 and save the report in the root
+  directory.
+</p>
+<pre><code>npx lighthouse http://localhost:3000 --output json --output-path ./lighthouse_report_baseline.json --only-categories=performance --view</code></pre>
+
+<h3>2. Generate Optimized Report</h3>
+<p>This command will analyze the app on port 3001 and save its report.</p>
+<pre><code>npx lighthouse http://localhost:3001 --output json --output-path ./lighthouse_report_optimized.json --only-categories=performance --view</code></pre>
+
+<h2>Combine and Compare Results</h2>
+<p>
+  After generating both JSON reports, use the following Node.js command to parse
+  the data and create a summary CSV file named
+  <code>performance_summary.csv</code>.
+</p>
+<p>Run this command from the root directory (<code>ReactJS_App/</code>).</p>
+
+<pre><code>node -e "const fs=require('fs'); const base=require('./lighthouse_report_baseline.json'); const opt=require('./lighthouse_report_optimized.json'); const data=\`Metric,Baseline (ms),Optimized (ms)\\nFirst Contentful Paint,$\{base.audits['first-contentful-paint'].numericValue.toFixed(2)},$\{opt.audits['first-contentful-paint'].numericValue.toFixed(2)}\\nLargest Contentful Paint,$\{base.audits['largest-contentful-paint'].numericValue.toFixed(2)},$\{opt.audits['largest-contentful-paint'].numericValue.toFixed(2)}\\nTime to Interactive,$\{base.audits['interactive'].numericValue.toFixed(2)},$\{opt.audits['interactive'].numericValue.toFixed(2)}\\nTotal Blocking Time,$\{base.audits['total-blocking-time'].numericValue.toFixed(2)},$\{opt.audits['total-blocking-time'].numericValue.toFixed(2)}\\nCumulative Layout Shift,$\{base.audits['cumulative-layout-shift'].displayValue},$\{opt.audits['cumulative-layout-shift'].displayValue}\`; fs.writeFileSync('performance_summary.csv',data)"</code></pre>
+
+<p class="note">
+  The numeric values for metrics are in milliseconds. I've added
+  <code>.toFixed(2)</code> to round the results for cleaner output.
+</p>
+
+<h2>Viewing the Results</h2>
+<p>
+  You can now open the <code>performance_summary.csv</code> file in any
+  spreadsheet program (like Excel, Google Sheets, or Numbers) to see a clear,
+  side-by-side comparison of the performance metrics before and after
+  optimization.
+</p>
