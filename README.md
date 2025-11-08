@@ -96,15 +96,7 @@ npm start</code></pre>
 
 <pre><code>node -e "const fs=require('fs'); const base=require('./lighthouse_report_baseline.json'); const opt=require('./lighthouse_report_optimized.json'); const data=\`Metric,Baseline (ms),Optimized (ms)\\nFirst Contentful Paint,$\{base.audits['first-contentful-paint'].numericValue.toFixed(2)},$\{opt.audits['first-contentful-paint'].numericValue.toFixed(2)}\\nLargest Contentful Paint,$\{base.audits['largest-contentful-paint'].numericValue.toFixed(2)},$\{opt.audits['largest-contentful-paint'].numericValue.toFixed(2)}\\nTime to Interactive,$\{base.audits['interactive'].numericValue.toFixed(2)},$\{opt.audits['interactive'].numericValue.toFixed(2)}\\nTotal Blocking Time,$\{base.audits['total-blocking-time'].numericValue.toFixed(2)},$\{opt.audits['total-blocking-time'].numericValue.toFixed(2)}\\nCumulative Layout Shift,$\{base.audits['cumulative-layout-shift'].displayValue},$\{opt.audits['cumulative-layout-shift'].displayValue}\`; fs.writeFileSync('performance_summary.csv',data)"</code></pre>
 
-<p class="note">
-  The numeric values for metrics are in milliseconds. I've added
-  <code>.toFixed(2)</code> to round the results for cleaner output.
-</p>
-
-<h2>Viewing the Results</h2>
-<p>
-  You can now open the <code>performance_summary.csv</code> file in any
-  spreadsheet program (like Excel, Google Sheets, or Numbers) to see a clear,
+e Excel, Google Sheets, or Numbers) to see a clear,
   side-by-side comparison of the performance metrics before and after
   optimization.
 </p>
