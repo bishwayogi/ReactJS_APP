@@ -40,11 +40,15 @@ Note: By default, Create React App will prompt you to use a different port if 30
 With both applications running, you can now use the Lighthouse CLI to generate performance reports.
 
 **1.	Generate Report for Baseline App:**
-Run the following command from the root of the ReactJS_App directory: lighthouse http://localhost:3000 --output json --output-path ./AnalysisDATA/lighthouse_report_baseline.json --only-categories=performance --view
+Run the following command from the root of the ReactJS_App directory: 
+-- lighthouse http://localhost:3000 --output json --output-path ./AnalysisDATA/lighthouse_report_baseline.json --only-categories=performance
+-- lighthouse http://localhost:3000 --output html --output-path ./lighthouse_report_baseline.html --only-categories=performance
 
 **2.	Generate Report for Optimized App:**
 Next, run this command from the root of the ReactJS_App directory:
-lighthouse http://localhost:3001 --output json --output-path ./AnalysisDATA/lighthouse_report_optimized.json --only-categories=performance --view
+-- lighthouse http://localhost:3001 --output json --output-path ./AnalysisDATA/lighthouse_report_optimized.json --only-categories=performance
+-- lighthouse http://localhost:3001 --output html --output-path ./lighthouse_report_optimized.html --only-categories=performance
+
 
 After running these commands, you will find two new files, lighthouse_report_baseline.json and lighthouse_report_optimized.json, inside the AnalysisDATA folder.
 
