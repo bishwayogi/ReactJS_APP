@@ -1,0 +1,4 @@
+Metric,Base,Optimized
+FCP,663,636
+LCP,4205,3034
+TTI,4614,3100
