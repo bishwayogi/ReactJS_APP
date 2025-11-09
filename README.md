@@ -8,9 +8,9 @@
 <h2>Project Structure</h2>
 
 <pre><code>ReactJS_App/
-├── Baseline_App/       # The original, unoptimized React application
-├── Optimized_App/      # The refactored and optimized React application
-└── AnalysisDATA/       # Directory for storing performance reports
+├── ecom-baseline/       # The original, unoptimized React application
+├── ecom-optimized/      # The refactored and optimized React application
+└── analysis/       # Directory for storing performance reports
 </code></pre>
 
 <h2>Prerequisites</h2>
