@@ -35,10 +35,10 @@
 <pre><code>git clone &lt;your-repository-url&gt;
 cd ReactJS_App</code></pre>
 
-<h3>2. Set Up the Baseline App</h3>
+<h3>2. Set Up the ecom-baseline App</h3>
 <p>This application will run on <code>http://localhost:3000</code>.</p>
-<pre><code># Navigate to the baseline app directory
-cd Baseline_App
+<pre><code># Navigate to the ecom-baseline app directory
+cd ecom-baseline
 
 # Install dependencies
 npm install
@@ -47,7 +47,7 @@ npm install
 npm start</code></pre>
 <p class="note">
   Keep this terminal window open. A new browser tab should open with the
-  baseline app.
+  ecom-baseline app.
 </p>
 
 <h3>3. Set Up the Optimized App</h3>
@@ -56,7 +56,7 @@ npm start</code></pre>
   <strong>new terminal window</strong> for this step.
 </p>
 <pre><code># Navigate to the optimized app directory from the root
-cd path/to/ReactJS_App/Optimized_App
+cd path/to/ReactJS_App/ecom-optimized
 
 # Install dependencies
 npm install
